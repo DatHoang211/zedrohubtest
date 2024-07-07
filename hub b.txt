@@ -1,0 +1,66 @@
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+--------------------------------------------------------------------------------------------------------------------------------------------
+local Window = Fluent:CreateWindow({
+    --ai skid thì nhớ đổi tên =)
+    --táo hub , aniee hub :>
+    Title = "Zedro Hub",
+    SubTitle = "Version Vip",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(530, 350),
+    Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
+    Theme = "Matte white",
+    MinimizeKey = Enum.KeyCode.End -- Used when theres no MinimizeKeybind
+})
+local Tabs = {
+    Main = Window:AddTab({ Title = "Main Farm", Icon = "home" }),
+    Setting = Window:AddTab({ Title = "Cài đặt" Farming", Icon = "settings" }),
+    Stats = Window:AddTab({ Title = "Chỉ số", Icon = "plus-circle" }),
+    Player = Window:AddTab({ Title = "Người dùng", Icon = "baby" }),
+    Teleport = Window:AddTab({ Title = "Travel", Icon = "palmtree" }),
+    Fruit = Window:AddTab({ Title = "Trái cây", Icon = "apple" }),
+    Raid = Window:AddTab({ Title = "Raid", Icon = "swords" }),
+    Race = Window:AddTab({ Title = "Race v4", Icon = "chevrons-right" }),
+    Shop = Window:AddTab({ Title = "Mua Items", Icon = "shopping-cart" }),
+	Misc = Window:AddTab({ Title = "Misc", Icon = "list-plus" }),
+    Hop = Window:AddTab({ Title = "Hop", Icon = "wifi" }),
+}
+local Options = Fluent.Options
+do
+--------------------------------------------------------------------------------------------------------------------------------------------
+function AntiBan()
+    for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
+        if v:IsA("LocalScript") then
+            if v.Name == "General" or v.Name == "Shiftlock"  or v.Name == "FallDamage" or v.Name == "4444" or v.Name == "CamBob" or v.Name == "JumpCD" or v.Name == "Looking" or v.Name == "Run" then
+                v:Destroy()
+            end
+        end
+     end
+     for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerScripts:GetDescendants()) do
+        if v:IsA("LocalScript") then
+            if v.Name == "RobloxMotor6DBugFix" or v.Name == "Clans"  or v.Name == "Codes" or v.Name == "CustomForceField" or v.Name == "MenuBloodSp"  or v.Name == "PlayerList" then
+                v:Destroy()
+            end
+        end
+     end
+    end
+    AntiBan()
+--------------------------------------------------------------------------------------------------------------------------------------------
+    repeat wait() until game.Players
+    repeat wait() until game.Players.LocalPlayer
+    repeat wait() until game.ReplicatedStorage
+    repeat wait() until game.ReplicatedStorage:FindFirstChild("Remotes");
+    repeat wait() until game.Players.LocalPlayer:FindFirstChild("PlayerGui");
+    repeat wait() until game.Players.LocalPlayer.PlayerGui:FindFirstChild("Main");
+    repeat wait() until game:GetService("Players")
+    repeat wait() until game:GetService("Players").LocalPlayer.Character:FindFirstChild("Energy")
+    
+    
+    Tabs.Misc:AddButton({
+	Title = "Open Awakening",
+	Description = "Chỉnh sửa chiêu thức tỉnh",
+	Callback = function()
+        game:GetService("Players").LocalPlayer.PlayerGui.Main.AwakeningToggler.Visible = true
+	end
+})
